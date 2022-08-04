@@ -1,16 +1,62 @@
+import { useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import { Searchbar } from './Searchbar/Searchbar';
+import 'react-toastify/dist/ReactToastify.css';
+import { ImageGallery } from './ImageGallery/ImageGallery';
+
 export const App = () => {
+  const [query, setQuery] = useState('');
+
+  const searchImg = tag => {
+    if (query === tag) {
+      toast.info('We already found it');
+      return;
+    }
+    setQuery(tag);
+  };
+
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
+    <div className="App">
+      <Searchbar onSubmit={searchImg} />
+      <ImageGallery query={query} />
+      <ToastContainer position="top-right" autoClose={2000} />
     </div>
   );
 };
+
+/*
+import { Component } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import { Searchbar } from './Searchbar/Searchbar';
+import 'react-toastify/dist/ReactToastify.css';
+import { ImageGallery } from './ImageGallery/ImageGallery';
+// import { Loader } from './Loader/Loader';
+
+export class App extends Component {
+  state = {
+    query: '',
+  };
+
+  componentDidUpdate(prevProps, prevState) {
+    const { query } = this.state;
+    if (prevState.query === query) {
+      toast.info('We already found it');
+    }
+  }
+
+  searchImg = query => {
+    this.setState({ query });
+  };
+
+  render() {
+    const { query } = this.state;
+    return (
+      <div className="App">
+        <Searchbar onSubmit={this.searchImg} />
+        <ImageGallery query={query} />
+        <ToastContainer position="top-right" autoClose={2000} />
+      </div>
+    );
+  }
+}
+*/
