@@ -25,10 +25,7 @@ export const Modal = ({ onClose, largeIMG }) => {
   return (
     <div className={s.Overlay} id="Overlay" onClick={handelCloseModal}>
       <div className={s.Modal}>
-        <img
-          src={largeIMG}
-          // alt={largeIMG.tag}
-        />
+        <img src={largeIMG} alt="img" />
       </div>
     </div>
   );
@@ -37,10 +34,6 @@ export const Modal = ({ onClose, largeIMG }) => {
 Modal.propTypes = {
   onClose: PropTypes.func.isRequired,
   largeIMG: PropTypes.string.isRequired,
-  // largeIMG: PropTypes.shape({
-  // img: PropTypes.string.isRequired,
-  // tag: PropTypes.string.isRequired,
-  // }),
 };
 
 /*
