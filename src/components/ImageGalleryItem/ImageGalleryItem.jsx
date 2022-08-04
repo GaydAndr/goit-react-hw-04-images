@@ -14,7 +14,7 @@ export const ImagesGallaryItem = ({
       >
         <img
           src={webformatURL}
-          alt={tags}
+          // alt={tags}
           className={s.ImageGalleryItem__image}
         />
       </li>
@@ -24,7 +24,7 @@ export const ImagesGallaryItem = ({
 
 ImagesGallaryItem.propsTypes = {
   webformatURL: PropTypes.string.isRequired,
-  tags: PropTypes.string.isRequired,
+  // tags: PropTypes.string.isRequired,
   largeImageURL: PropTypes.string.isRequired,
   handlerOpenModal: PropTypes.func.isRequired,
 };

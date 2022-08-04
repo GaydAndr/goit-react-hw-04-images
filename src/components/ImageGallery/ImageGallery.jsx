@@ -25,15 +25,17 @@ export const ImageGallery = ({ query }) => {
   const [status, setStatus] = useState(STATUS.idle);
 
   useEffect(() => {
+    if (tags !== query) {
+      setImages([]);
+    }
+  }, [query, tags]);
+
+  useEffect(() => {
     if (!query) {
       return;
     }
-    if (query !== tags) {
-      setImages([]);
-    }
 
     setStatus(STATUS.loading);
-    setTag(query);
 
     PixabayAPI(query, page)
       .then(({ data }) => {
@@ -46,6 +48,7 @@ export const ImageGallery = ({ query }) => {
           setTotalHits(null);
           return;
         }
+        setTag(query);
         setImages(ps => [...ps, ...data.hits]);
         setTotalHits(data.totalHits);
         setStatus(STATUS.success);
@@ -60,7 +63,7 @@ export const ImageGallery = ({ query }) => {
     setPage(ps => ps + 1);
   };
 
-  const handlerOpenModal = img => {
+  const handlerOpenModal = (img, tag) => {
     setLargeIMG(img);
   };
 
